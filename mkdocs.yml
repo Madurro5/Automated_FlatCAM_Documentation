@@ -1,0 +1,179 @@
+site_name: Documentation CNC
+site_description: Documentation complète de la chaîne CNC — logiciels, machine, développement FlatCAM.
+site_author: Projet CNC
+docs_dir: docs
+site_dir: site
+
+# ─────────────────────────────────────────
+#  THÈME
+# ─────────────────────────────────────────
+theme:
+  name: material
+  language: fr
+
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Passer en mode sombre
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: grey
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Passer en mode clair
+
+  features:
+    # Sidebar gauche uniquement (pas de tabs)
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.indexes
+    - navigation.footer
+
+    # Recherche
+    - search.highlight
+    - search.suggest
+    - search.share
+
+    # Contenu
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+
+extra_css:
+  - assets/stylesheets/custom.css
+
+# ─────────────────────────────────────────
+#  PLUGINS
+# ─────────────────────────────────────────
+plugins:
+  - search:
+      lang: fr
+  - glightbox:
+      touchNavigation: true
+      effect: zoom
+  - minify:
+      minify_html: true
+  - with-pdf:
+      #author: WHO
+        #copyright: ANY TEXT
+        #
+        #cover: false
+        #back_cover: true
+        cover_title: Documentation CNC
+        cover_subtitle: Documentation complète logigicielle et matérielle de la chaîne CNC
+        #custom_template_path: TEMPLATES PATH
+        #
+        #toc_title: TOC TITLE TEXT
+        #heading_shift: false
+        #toc_level: 3
+        #ordered_chapter_level: 2
+        #excludes_children:
+        #    - 'release-notes/:upgrading'
+        #    - 'release-notes/:changelog'
+        #
+        #exclude_pages:
+        #    - 'bugs/'
+        #    - 'appendix/contribute/'
+        #convert_iframe:
+        #    - src: IFRAME SRC
+        #      img: POSTER IMAGE URL
+        #      text: ALTERNATE TEXT
+        #    - src: ...
+        #two_columns_level: 3
+        #
+        #render_js: true
+        #headless_chrome_path: headless-chromium
+        #
+        #output_path: any-place/document.pdf
+        #enabled_if_env: ENABLE_PDF_EXPORT
+        #
+        #debug_html: true
+        #show_anchors: true
+        #verbose: true
+
+# ─────────────────────────────────────────
+#  EXTENSIONS MARKDOWN
+# ─────────────────────────────────────────
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - attr_list
+  - md_in_html
+
+extra:
+  generator: false
+
+# ─────────────────────────────────────────
+#  NAVIGATION
+# ─────────────────────────────────────────
+nav:
+  - Accueil: index.md
+
+  - Chaîne logicielle:
+    - chaine-logicielle/index.md
+    - KiCad: chaine-logicielle/kicad.md
+    - FlatCAM Fork:
+      - chaine-logicielle/flatcam-fork/index.md
+      - Utilisation:
+        - Guide Débutant: chaine-logicielle/flatcam-fork/guide-debutant.md
+        - Guide Avancé: chaine-logicielle/flatcam-fork/guide-avance.md
+      - Développement:
+        - Le Fork FlatCAM: chaine-logicielle/flatcam-fork/fork-explication.md
+        - Installation du code: chaine-logicielle/flatcam-fork/installation-dev.md
+        - Code annoté: chaine-logicielle/flatcam-fork/code-annote.md
+        - Générateur de setup: chaine-logicielle/flatcam-fork/generateur-setup.md
+    - OpenBuilds Control: chaine-logicielle/openbuilds-control.md
+
+  - Machine CNC:
+    - cnc/index.md
+    - Guide d'utilisation: cnc/guide-utilisation.md
+    - Outils & Matériaux: cnc/outils-materiaux.md
+    - Mises à jour & Upgrades:
+      - cnc/upgrades/index.md
+      - Moteurs pas à pas: cnc/upgrades/moteurs.md
+      - Broche: cnc/upgrades/broche.md
+      - GRBL HAL pour STM32: cnc/upgrades/grbl-hal-stm32.md
+      - Détecteur de surface Z: cnc/upgrades/detecteur-z.md
+
+
+watch:
+  - docs
