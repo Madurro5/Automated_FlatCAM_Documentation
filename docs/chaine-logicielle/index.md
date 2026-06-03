@@ -12,7 +12,7 @@ Vue d'ensemble des logiciels qui composent la chaîne de traitement, de la conce
 
 ## Flux de données
 
-La chaîne logicielle représentes l'ensemble des blocs de couleur rouge du schéma du fonctionnement global ci-dessous.
+La chaîne logicielle représente l'ensemble des blocs de couleur rouge du schéma du fonctionnement global ci-dessous.
 
 ```mermaid
 flowchart TD
@@ -31,4 +31,3 @@ flowchart TD
 --------------------------------------------------------------
 
 [→ Première étape : KiCAD](kicad.md)
-

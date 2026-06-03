@@ -72,9 +72,9 @@ GRBL est Open Source et sa licence permet de l'utiliser dans le cadre de la CNC.
 
 Pour bien fonctionner le logiciel grbl a besoin d'un ensemble de paramètres propre au matériel comme le déplacement d'un pas d'un moteur pas à pas ou encore les dimansions de la table de perçage pour chaque axe. OpenBuild Control permet de renseigner ses paramètres et de les flasher sur la carte.
 
-L'onglet suivant permet d'y accéder sur OpenBuild Control.
+L'onglet suivant permet d'y accéder sur OpenBuild Control:
 
-[Onglet GRBL settings OpenBuild](../assets/images/openbuild-control/onglet-grbl-settings.jpg)
+![Imge Onglet GRBL settings OpenBuild](../assets/images/openbuild-control/onglet-grbl-settings.jpg)
 
 Si vous souhaitez apporter des modifications à ces paramètres, il vous suffit de modifier les valeurs puis de cliquer sur `Save to firmware` pour enregistrer ces paramètres au sein de grbl. 
 
@@ -150,8 +150,6 @@ La page [guide d'utilisation cnc](../cnc/guide-utilisation.md) explique tout la 
 ### Mise à zéro des axes
 
 Une fois avoir suivi les indication pour mettre en état de marche la CNC, il faut faire le 0 des axes.
-
-
 
 
 ### Lancement d'un usinage

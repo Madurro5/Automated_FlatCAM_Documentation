@@ -4,15 +4,15 @@
 
 ## Rôle du script
 
-Une fois avoir ajouté une fonctionnalité ou apporté une correction au code de Automated FlatCAM, il faut pouvoir créer à nouveau un installateur pour simplifier l'installation du logiciel.
+Après avoir ajouté une fonctionnalité ou apporté une correction au code de Automated FlatCAM, il faut pouvoir créer à nouveau un installateur pour simplifier l'installation du logiciel.
 
-Le dépôt du projet comprend déjà un programme permettant d'automatiser la création d'un installateur simplement en l'exécutant. Cela génère un installateur exécutable (.exe) uniquement compatible pour Windows permettant d'installer facilement le logiciel sur d'autre machine.
+Le dépôt du projet comprend déjà un programme permettant d'automatiser la création d'un installateur simplement en l'exécutant. Cela génère un installateur exécutable (.exe) uniquement compatible avec Windows, permettant d'installer facilement le logiciel sur une autre machine.
 
 ## 2. Outils utilisés
 
 ### PyInstaller
 
-Pour créer un exécutable à partir du code python il faut créer une première version portable du code comprenant un condensé de toutes les dépendances ainsi qu'un exécutable du code python. Cette première étape est assuré par `Pyinstaller`.
+Pour créer un exécutable à partir du code Python, il faut créer une première version portable du code comprenant un condensé de toutes les dépendances ainsi qu'un exécutable du code Python. Cette première étape est assurée par `PyInstaller`.
 
 **PyInstaller** analyse un script Python et le transforme en un exécutable Windows autonome (`.exe`) en embarquant l'interpréteur Python et toutes les dépendances (DLLs, packages, assets) dans un dossier `dist/`.
 
@@ -23,7 +23,7 @@ Pour créer un exécutable à partir du code python il faut créer une première
 
 Le comportement de PyInstaller est entièrement contrôlé par le fichier `.spec` présent dans le projet.
 
-**Installez cet outil avec `pip install pyinstaller==6.19.0` dans un terminal dans l'`env310` actif.**
+**Installez cet outil avec `pip install pyinstaller==6.19.0` dans un terminal avec l'`env310` actif.**
 
 ### Inno Setup 6
 
@@ -34,15 +34,12 @@ Le comportement de PyInstaller est entièrement contrôlé par le fichier `.spec
 - Commande de build : `iscc.exe flatcam_setup.iss`
 - Le comportement est contrôlé par le fichier `.iss`.
 
-**Installez `Inno Setup 6` depuis le [site officiel](https://jrsoftware.org/isdl.php)** 
+**Installez `Inno Setup 6` depuis le [site officiel](https://jrsoftware.org/isdl.php)** ![Inno-Setup-Website](../../assets/images/generateur-setup/Installer-Inno-Setup-6.jpg)
 
-![Inno-Setup-Website](../../assets/images/generateur-setup/Installer-Inno-Setup-6.jpg)
-
-**ou avec la commande suivante dans le powershell windows:** 
+**ou avec la commande suivante dans le PowerShell Windows :** 
 ```
 winget install -e --id JRSoftware.InnoSetup
 ```
-
 
 ## Fonctionnement
 
@@ -50,7 +47,7 @@ PyInstaller nécessite un fichier `.spec` détaillé pour FlatCAM en raison de s
 
 **flatcam.spec** : Fichier `.spec` complet crucial pour Pyinstaller contenant :
 - `hiddenimports` exhaustif pour tous les modules chargés dynamiquement (plugins, backends VisPy, etc.)
-- `datas` incluant tous les assets : icônes, polices, locales, shaders VisPy, preprocessors
+- `datas` incluant tous les assets : icônes, polices, locales, shaders VisPy, préprocessors
 - `binaries` pour les DLLs non détectées automatiquement (freetype, GDAL, ortools)
 - Détection automatique du dossier `site-packages` de l'environnement actif
 - `EXE` : configuration de l'exécutable (icône, mode console, version)
@@ -59,9 +56,7 @@ PyInstaller nécessite un fichier `.spec` détaillé pour FlatCAM en raison de s
 > **Note** : `console=True` activé pour voir les erreurs au lancement pendant la phase de débogage (mettre false pour la version distribuée)
 
 
-
-
-De la même manière que Pyinstaller nécessite un fichier `.spec`, `Inno Setup 6` a besoin d'un `.iss` pour définir un certains nombre de paramètres et d'options. 
+De la même manière que Pyinstaller nécessite un fichier `.spec`, `Inno Setup 6` a besoin d'un `.iss` pour définir un certain nombre de paramètres et d'options. 
 
 **flatcam_setup.iss** : script Inno Setup qui définit le comportement de l'installateur Windows.
 - Métadonnées de l'application (nom, version, éditeur, GUID)
@@ -77,12 +72,12 @@ De la même manière que Pyinstaller nécessite un fichier `.spec`, `Inno Setup 
 #define OutputBaseFilename=Automated_FlatCAM_Setup_{#AppVersion}
 ```
 
-L'entièreté du processus est automatisé à l'aide d'un script.
+L'entièreté du processus est automatisée à l'aide d'un script.
 
 **build.bat** : script batch Windows qui automatise la chaîne de build complète en une seule commande.
 Ses actions sont :
 
-1. Vérifications préliminaires (env Python, fichiers présents, Inno Setup installé)
+1. Vérifications préliminaires (environnement Python, fichiers présents, Inno Setup installé)
 2. Nettoyage des anciens artefacts (`build/`, `dist/`, `Installers/`)
 3. Activation de `env310` et lancement de PyInstaller
 4. Vérification que `dist\FlatCAM\FlatCAM.exe` existe

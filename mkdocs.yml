@@ -33,20 +33,15 @@ theme:
         name: Passer en mode clair
 
   features:
-    # Sidebar gauche uniquement (pas de tabs)
     - navigation.sections
     - navigation.expand
     - navigation.path
     - navigation.top
     - navigation.indexes
     - navigation.footer
-
-    # Recherche
     - search.highlight
     - search.suggest
     - search.share
-
-    # Contenu
     - content.code.copy
     - content.code.annotate
     - content.tabs.link
@@ -54,6 +49,7 @@ theme:
 
 extra_css:
   - assets/stylesheets/custom.css
+  - assets/stylesheets/pdf-print.css   # ← Styles dédiés au rendu PDF (ignorés en web)
 
 # ─────────────────────────────────────────
 #  PLUGINS
@@ -61,48 +57,69 @@ extra_css:
 plugins:
   - search:
       lang: fr
+
   - glightbox:
       touchNavigation: true
       effect: zoom
+
   - minify:
       minify_html: true
+
+  - mkdocs-video
+  
   - with-pdf:
-      #author: WHO
-        #copyright: ANY TEXT
-        #
-        #cover: false
-        #back_cover: true
-        cover_title: Documentation CNC
-        cover_subtitle: Documentation complète logigicielle et matérielle de la chaîne CNC
-        #custom_template_path: TEMPLATES PATH
-        #
-        #toc_title: TOC TITLE TEXT
-        #heading_shift: false
-        #toc_level: 3
-        #ordered_chapter_level: 2
-        #excludes_children:
-        #    - 'release-notes/:upgrading'
-        #    - 'release-notes/:changelog'
-        #
-        #exclude_pages:
-        #    - 'bugs/'
-        #    - 'appendix/contribute/'
-        #convert_iframe:
-        #    - src: IFRAME SRC
-        #      img: POSTER IMAGE URL
-        #      text: ALTERNATE TEXT
-        #    - src: ...
-        #two_columns_level: 3
-        #
-        #render_js: true
-        #headless_chrome_path: headless-chromium
-        #
-        #output_path: any-place/document.pdf
-        #enabled_if_env: ENABLE_PDF_EXPORT
-        #
-        #debug_html: true
-        #show_anchors: true
-        #verbose: true
+      # ── Métadonnées de couverture ──────────────────────────────────────
+      author: Projet CNC
+      copyright: "© 2025 Projet CNC — Tous droits réservés"
+      cover: true
+      back_cover: false
+      cover_title: Documentation CNC
+      cover_subtitle: Documentation complète logicielle et matérielle de la chaîne CNC
+
+      # ── Table des matières ────────────────────────────────────────────
+      toc_title: "Table des matières"
+      toc_level: 3           # Profondeur max : H1 → H3
+      heading_shift: true    # Réindente les titres selon la hiérarchie nav
+
+      # ── Numérotation des chapitres ────────────────────────────────────
+      ordered_chapter_level: 2  # Numérotation automatique jusqu'au niveau H2
+
+      # ── Pages exclues du PDF ──────────────────────────────────────────
+      # Décommentez et adaptez si certaines pages ne doivent pas figurer dans le PDF
+      # exclude_pages:
+      #   - 'index.md'               # Page d'accueil (souvent redondante avec la couverture)
+
+      # ── Exclusion de sous-sections ────────────────────────────────────
+      # excludes_children:
+      #   - 'chaine-logicielle/flatcam-fork/:generateur-setup'
+
+      # ── Rendu des iframes (diagrammes Mermaid, vidéos, etc.) ─────────
+      # Convertit les iframes embarquées en image statique pour le PDF.
+      # Syntaxe : src + img (poster) + text (alt)
+      # convert_iframe:
+      #   - src: https://www.youtube.com/embed/XXXXX
+      #     img: https://img.youtube.com/vi/XXXXX/0.jpg
+      #     text: "Voir la vidéo en ligne"
+
+      # ── Mise en page ──────────────────────────────────────────────────
+      two_columns_level: 0   # 0 = une seule colonne (recommandé pour la technique)
+
+      # ── Chemin de sortie ──────────────────────────────────────────────
+      output_path: documentation-cnc.pdf
+
+      # ── Activation conditionnelle (CI/CD) ────────────────────────────
+      # Décommentez pour n'activer le PDF que si la variable d'env est définie :
+      enabled_if_env: ENABLE_PDF_EXPORT
+
+      # ── Rendu JavaScript (Mermaid, etc.) ─────────────────────────────
+      # Nécessite Chromium installé sur la machine de build
+      render_js: false
+      # headless_chrome_path: 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'   # Adapter selon l'OS : chromium / google-chrome
+
+      # ── Débogage ──────────────────────────────────────────────────────
+      # debug_html: true    # Génère un HTML intermédiaire pour inspecter le rendu
+      # show_anchors: true
+      # verbose: true
 
 # ─────────────────────────────────────────
 #  EXTENSIONS MARKDOWN
@@ -173,7 +190,6 @@ nav:
       - Broche: cnc/upgrades/broche.md
       - GRBL HAL pour STM32: cnc/upgrades/grbl-hal-stm32.md
       - Détecteur de surface Z: cnc/upgrades/detecteur-z.md
-
 
 watch:
   - docs
