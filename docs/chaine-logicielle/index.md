@@ -7,7 +7,7 @@ Vue d'ensemble des logiciels qui composent la chaîne de traitement, de la conce
 | Logiciel | Rôle dans la chaîne |
 |---|---|
 | [KiCad](kicad.md) | Conception du PCB et export Gerber |
-| [FlatCAM Fork](flatcam-fork/index.md) | Conversion Gerber → G-code, gestion des passes d'usinage |
+| [FlatCAM Fork](automated-flatcam/index.md) | Conversion Gerber → G-code, gestion des passes d'usinage |
 | [OpenBuilds Control](openbuilds-control.md) | Interface de contrôle machine, envoi du G-code, GRBL |
 
 ## Flux de données

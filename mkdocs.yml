@@ -46,6 +46,8 @@ theme:
     - content.code.annotate
     - content.tabs.link
     - content.tooltips
+    - tables.border
+    - tables.sort
 
 extra_css:
   - assets/stylesheets/custom.css
@@ -168,17 +170,16 @@ nav:
   - Chaîne logicielle:
     - chaine-logicielle/index.md
     - KiCad: chaine-logicielle/kicad.md
-    - FlatCAM Fork:
-      - chaine-logicielle/flatcam-fork/index.md
-      - Utilisation:
-        - Guide Débutant: chaine-logicielle/flatcam-fork/guide-debutant.md
-        - Guide Avancé: chaine-logicielle/flatcam-fork/guide-avance.md
-      - Développement:
-        - Le Fork FlatCAM: chaine-logicielle/flatcam-fork/fork-explication.md
-        - Installation du code: chaine-logicielle/flatcam-fork/installation-dev.md
-        - Code annoté: chaine-logicielle/flatcam-fork/code-annote.md
-        - Générateur de setup: chaine-logicielle/flatcam-fork/generateur-setup.md
+    - Automated FlatCAM:
+      - chaine-logicielle/automated-flatcam/index.md
+      - Guide Débutant: chaine-logicielle/automated-flatcam/guide-debutant.md
+      - Guide Avancé: chaine-logicielle/automated-flatcam/guide-avance.md
     - OpenBuilds Control: chaine-logicielle/openbuilds-control.md
+    - Développement FlatCAM Fork: 
+      - chaine-logicielle/developpement-flatcam-fork/index.md
+      - Installation du code: chaine-logicielle/developpement-flatcam-fork/installation-dev.md
+      - Code annoté: chaine-logicielle/developpement-flatcam-fork/code-annote.md
+      - Générateur de setup: chaine-logicielle/developpement-flatcam-fork/generateur-setup.md
 
   - Machine CNC:
     - cnc/index.md
@@ -187,9 +188,10 @@ nav:
     - Mises à jour & Upgrades:
       - cnc/upgrades/index.md
       - Moteurs pas à pas: cnc/upgrades/moteurs.md
-      - Broche: cnc/upgrades/broche.md
-      - GRBL HAL pour STM32: cnc/upgrades/grbl-hal-stm32.md
       - Détecteur de surface Z: cnc/upgrades/detecteur-z.md
+      - Broche: cnc/upgrades/broche.md
+      - Arret d'urgence: cnc\upgrades\arret-urgence.md
+      - GRBL HAL pour STM32: cnc/upgrades/grbl-hal-stm32.md
 
 watch:
   - docs

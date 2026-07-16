@@ -33,7 +33,7 @@ Ouvrir `index.html` à la racine du dossier `site/` de documentation permet d'ou
 
 ## Comment alimenter ou apporter des modifications à cette documentation
 
-1. Récupérer le dossier de documentation et suivre la configuration décrite dans le [`README.md`](../README.md) 
+1. Récupérer le dossier de documentation et suivre la configuration décrite dans le [`README.md`](../../README.md) 
 2. Éditer le fichier `.md` correspondant dans `docs/`.
 3. Pour ajouter une page : la créer dans `docs/` puis l'ajouter dans la section `nav:` dans `mkdocs.yml`.
 4. Lancer la commande `mkdocs serve` pour prévisualiser (`mkdocs serve --livereload --watch docs/` pour auto-refresh à la modification d'un fichier). 

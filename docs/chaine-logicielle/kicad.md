@@ -79,4 +79,4 @@ Si vous concevez un PCB double face vous aurez naturellement un fichier Gerber s
 
 --------------------------------------------------------------
 
-[→ Étape suivante : FlatCAM Fork](flatcam-fork/index.md)
+[→ Étape suivante : FlatCAM Fork](automated-flatcam/index.md)

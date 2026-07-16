@@ -57,9 +57,9 @@ Une fois sélectionné, cliquez sur le bouton `Connect`.
     > **Grbl** is a no-compromise, high performance, low cost alternative to parallel-port-based motion control for CNC milling. It will run on a vanilla Arduino (Duemillanove/Uno) as long as it sports an Atmega 328.
     The controller is written in highly optimized C utilizing every clever feature of the AVR-chips to achieve precise timing and asynchronous operation. It is able to maintain up to 30kHz of stable, jitter free control pulses.
 
-    It accepts standards-compliant g-code and has been tested with the output of several CAM tools with no problems. Arcs, circles and helical motion are fully supported, as well as, all other primary g-code commands. Macro functions, variables, and most canned cycles are not supported, but we think GUIs can do a much better job at translating them into straight g-code anyhow.
+    > It accepts standards-compliant g-code and has been tested with the output of several CAM tools with no problems. Arcs, circles and helical motion are fully supported, as well as, all other primary g-code commands. Macro functions, variables, and most canned cycles are not supported, but we think GUIs can do a much better job at translating them into straight g-code anyhow.
 
-    Grbl includes full acceleration management with look ahead. That means the controller will look up to 18 motions into the future and plan its velocities ahead to deliver smooth acceleration and jerk-free cornering.
+    > Grbl includes full acceleration management with look ahead. That means the controller will look up to 18 motions into the future and plan its velocities ahead to deliver smooth acceleration and jerk-free cornering.
 
     Licensing: Grbl is free software, released under the GPLv3 license.
     ---
@@ -145,14 +145,55 @@ Vous pouvez vous déplacer sur la visalisation 3D en utilisant le clic droit, la
 
 A ce stade il est **impératif** de préparer le matériel et la CNC.
 
-La page [guide d'utilisation cnc](../cnc/guide-utilisation.md) explique tout la démarche à avoir pour préparer le matériel.
+Il vous faut suivre et prendre connaissance de toutes les indications nécessaire à la préparation matérielle d'un usinage. La page détaille toute la démarche à avoir pour préparer le matériel. Liser puis un lien vous ramène à la section suivante de cette page une fois fini.
+
+[Guide de préparation et d'utilisation de la cnc](../cnc/guide-utilisation.md) 
 
 ### Mise à zéro des axes
 
-Une fois avoir suivi les indication pour mettre en état de marche la CNC, il faut faire le 0 des axes.
+Une fois avoir suivi les indications pour préparer la CNC. Faire le 0 de chacun des axes.
 
+Faire le `Homing` pour permettre à la CNC de ramener la perceuse en butée des capteurs pour chacun des 3 axes.
+
+![Photo bouton Homing](../assets/images/openbuild-control/Homing_screen_soft.jpg)
+
+La perceuse est en butée aux 0 mécaniques du plan de perçage. Venez maintenant déplacer en X et Y la perceuse depuis le logiciel en entrant une certaine valeur que vous noter précieusement. Ce déplacement permet de vous positionner à l'endroit de la plaque où vous souhaitez faire commencer votre usinage.
+
+![Photo OpenBuild Control valeur rentrées](../assets/images/openbuild-control/zone_valeur_a_rentrer_XY.jpg)
+
+![Photo Réel plan de perçage pour comprendre]()
+
+Si toutefois la CNC était amenée à perdre connaissance de sa position actuelle (saut de pas de moteurs, arrêt d'urgence, ...), il vous sera ainsi possible de revenir exactement à ce point de départ en effectuant un `Homing` puis un décalage à nouveau avec ces mêmes valeurs.
+
+Une fois au dessus de votre carte, il ne vous reste plus qu'à faire le 0 de l'axe Z grâce à l'outil de détection de surface. Assurez-vous d'avoir bien suivi les indications concernant la préparation du palpeur de surface ou des pinces à installer dans le [guide de la cnc](../cnc/guide-utilisation.md#mise-à-zéro-des-axes).
+
+Si le dispositif de détection de surface (palpeur) est bien en place, vérifier l'état de la détection de surface dans l'onglet troobleshooting. Par défaut, si aucun fin de course n'est pressé et que le shunt n'est pas effectif sur le dispositif de palpeur de surface, tous les capteurs sont à l'état `OFF`.
+
+![Etat des capteurs](../assets/images/openbuild-control/troobleshooting_probes_state.jpg)
+
+Il vous est possible d'actionner les fins de courses manuellement pour vérifier le bon déclenchement de chacun d'entre eux, ainsi que de faire contact manuellement avec les deux pinces ou le palpeur de détection de surface pour s'assurer de la bonne détection de ces capteurs. Attention toutefois, en déclenchant manuellement un fin de course `OpenBuild Control` déclenche une alarme car ses coordonnées de positions ne sont pas cohérente avec le déclenchement d'un des capteurs.
+
+→ Voir aussi : [Fonction de détection de surface Z](../cnc/upgrades/detecteur-z.md) concernant le raccordement de la sonde de détection automatique de surface.
 
 ### Lancement d'un usinage
 
+Si toutes les étapes précédentes ont été respectées vous pouvez alors lancer l'usinage.
 
-→ Voir aussi : [Détecteur de surface Z](../cnc/upgrades/detecteur-z.md) pour la mise à zéro automatique de l'axe Z.
+
+
+Lancer l'usinage : ![Run job button](../assets/images/openbuild-control/Run_job.jpg)
+
+
+
+L’outil va d’abords se déplacer vers la hauteur de déplacement initiale (définie lors de la conversion au sein de FlatCAM).
+
+
+
+Relancer l'usinage : ![Run job button ](../assets/images/openbuild-control/Run_job.jpg)
+
+
+
+La machine doit normalement graver correctement.
+Rester vigilant et attentif pendant la phase de gravure en suivant les points déjà précisé dans le [guide de la cnc](../cnc/guide-utilisation.md#mise-à-zéro-des-axes).
+
+
